@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>RESTAURANT</title>
+  <link href="{% static 'css/bill.css' %}" rel="stylesheet">
+  <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet"> -->
+
+  <style>
+    @page {
+      margin: 0mm;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- partial:index.partial.html -->
+
+  <div id="invoice-POS">
+    <!--End InvoiceTop-->
+
+        <p style="font-weight: 500; font-size:12px;display: flex; justify-content: flex-end;">
+          Bill no.: {{bill.daily_count}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+          Date / Time : {{ bill.date|date:"d/m/Y" }} {{ bill.time|time:"h:i A" }}
+          <br>
+          Table No: {{bill.table_no}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          Total Amount: {{bill.amount}} <br>
+          Customer Name: {{ bill.cust_name }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          Staff Name: {{ bill.staff_name }}
+        </p>
+
+           <hr>
+
+    <!--End Invoice Mid-->
+
+    <div id="bot">
+
+      <div id="table">
+        <table style="width:10cm; font-weight: 500; font-size:14px;">
+          <tr>
+            <th style="width: 10%; text-align: left;"><u>Sl.</u></th>
+            <th style="width: 40%; text-align: left;"><u>Item</u></th>
+            <th style="width: 10%; text-align: left;"><u>Qty</u></th>
+            <th style="width: 20%; text-align: left;"><u>Rate</u></th>
+            <th style="width: 20%; text-align: left;"><u>Amount</u></th>
+          </tr>
+
+          {% for d in dishes %}
+          <tr>
+            <th scope="row" style="width: 10%;">{{ forloop.counter }}.&nbsp;&nbsp;&nbsp;&nbsp;</th>
+            <td style="text-align: left;">{{d.dish.dish_name}}</td>
+            <td style="text-align: left;">{{d.quantity}}</td>
+            <td style="text-align: left;">{{ d.price }}</td>
+            <td style="text-align: left;">{% widthratio d.price 1 d.quantity %}.0</td>
+          </tr>
+          {% endfor %}
+        </table>
+      <hr>
+        <p style="font-weight: 400; text-align:right; font-size:13px;">
+          Sub Total: Rs. {{bill.sub_total}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>SGST : Rs.{{bill.cgst}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>CGST : Rs.{{bill.sgst}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+          Discount: {{bill.discount}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p style="font-weight: 900; font-size: 16px; text-align: right;">Net Amt:
+{{bill.amount}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+      </div>
+      <!--End Table-->
+     <hr>
+      <div id="legalcopy">
+        <p class="legal" style="text-align: center; font-weight: 400; font-size:12px;"><strong>Thank you for
+            Visitng</strong><br>Have
+          a Nice Day</p>
+      </div>
+    </div>
+
+    <!--End InvoiceBot-->
+  </div>
+  <!--End Invoice-->
+  <!-- partial -->
+
+</body>
+
+</html>

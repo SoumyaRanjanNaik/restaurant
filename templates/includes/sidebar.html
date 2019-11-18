@@ -1,0 +1,125 @@
+{% load static %}
+<div class="sidebar" data-color="purple" data-background-color="black"
+    data-image="{% static 'assets/img/sidebar-1.jpg' %}">
+    <!--
+        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+        Tip 2: you can also add an image using data-image tag
+    -->
+    <div class="logo">
+        <div class="simple-text logo-normal">
+            RESTAURANT
+        </div>
+    </div>
+    <div class="sidebar-wrapper">
+        <ul class="nav">
+            <li class="nav-item  {% if active_tab == 'dashboard' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'index' %}">
+                    <i class="material-icons">dashboard</i>
+                    <p>Dashboard</p>
+                </a>
+            </li>
+            <li class="nav-item {% if active_tab == 'kot_form' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'kot_form' %}">
+                    <i class="material-icons">content_copy</i>
+                    <p>KOT</p>
+                </a>
+            </li>
+            <li class="nav-item {% if active_tab == 'bill_form' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'bill_form' %}">
+                    <i class="material-icons">content_paste</i>
+                    <p>New Bill</p>
+                </a>
+            </li>
+            <li class="nav-item {% if active_tab == 'bills' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'bills' %}">
+                    <i class="material-icons">history</i>
+                    <p>Billing History</p>
+                </a>
+            </li>
+            <li class="nav-item {% if active_tab == 'restock' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'restock' %}">
+                    <i class="material-icons">library_books</i>
+                    <p>Restock</p>
+                </a>
+            </li>
+
+            {% if user.is_superuser %}
+            <li class="nav-item {% if active_tab == 'transactions' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'transactions' %}">
+                    <i class="material-icons">history</i>
+                    <p>Ledger</p>
+                </a>
+            </li>
+            {% endif %}
+            <li class="nav-item {% if active_tab == 'repayment' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'repayment' %}">
+                    <i class="material-icons">history</i>
+                    <p>Repayment</p>
+                </a>
+            </li>
+            <li class="nav-item {% if active_tab == 'inventory' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'inventory' %}">
+                    <i class="material-icons">dashboard</i>
+                    <p>Inventory</p>
+                </a>
+            </li>
+            <li class="nav-item {% if active_tab == 'item_expenditure' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'item_expenditure' %}">
+                    <i class="material-icons">dashboard</i>
+                    <p>Item Expenditure</p>
+                </a>
+            </li>
+            <li class="nav-item {% if active_tab == 'restock_history' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'restock_history' %}">
+                    <i class="material-icons">library_books</i>
+                    <p>Restock History</p>
+                </a>
+            </li>
+            <li class="nav-item {% if active_tab == 'list_kot' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'list_kot' %}">
+                    <i class="material-icons">history</i>
+                    <p>KOT HISTORY</p>
+                </a>
+            </li>
+            <li class="nav-item {% if active_tab == 'menu' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'menu' %}">
+                    <i class="material-icons">menu</i>
+                    <p>Menu</p>
+                </a>
+            </li>
+            <li class="nav-item {% if active_tab == 'dish_form' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'dish_form' %}">
+                    <i class="material-icons">library_books</i>
+                    <p>New Dish</p>
+                </a>
+            </li>
+            <li class="nav-item {% if active_tab == 'add_vendor' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'add_vendor' %}">
+                    <i class="material-icons">library_books</i>
+                    <p>Add Vendor</p>
+                </a>
+            </li>
+            <li class="nav-item {% if active_tab == 'add_item' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'add_item' %}">
+                    <i class="material-icons">library_books</i>
+                    <p>Add Item</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">
+                    <i class="material-icons">logout</i>
+                    <p>Logout</p>
+                </a>
+            </li>
+            {% if user.is_superuser %}
+            <li class="nav-item">
+                <a class="nav-link" href="/admin">
+                    <i class="material-icons">group</i>
+                    <p>Admin</p>
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
